@@ -136,11 +136,29 @@ void RFduinoBLE_onDisconnect()
 void RFduinoBLE_onReceive(char *data, int len)
 {
   // if the first byte is 0x01 / on / true
-  if (data[0]) {
+  Serial.print("received data: ");
+  Serial.print(data);
+  Serial.print(data[0]);
+  if (data[0]==1) {
     Serial.print("Setting high");
     digitalWrite(led, HIGH);
   }
-    
+  else if (data[0]==2) {
+    Serial.print("Flashing");
+    digitalWrite(led, HIGH);
+    delay(1000);
+    digitalWrite(led, LOW);
+  }
+  else if (data[0]==3) {
+    Serial.print("Flashing twice");
+    digitalWrite(led, HIGH);
+    delay(1000);
+    digitalWrite(led, LOW);
+    delay(1000);
+    digitalWrite(led, HIGH);
+    delay(1000);
+    digitalWrite(led, LOW);
+  }    
   else {
     Serial.print("Setting low");
     digitalWrite(led, LOW);
