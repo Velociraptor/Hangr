@@ -58,6 +58,8 @@ public class MainActivity extends Activity {
     private Button btn2Disconnect;
     private Button btnOn2;
     private Button btnOff2;
+    private Button btnSend2;
+    private Button btnSend3;
 //    private String MAC = "C6:DF:7D:96:83:28";
     private String Item1MAC = "F7:22:01:7C:1C:CC";
     private String Item2MAC = "CE:FF:39:4D:20:C5";
@@ -86,6 +88,8 @@ public class MainActivity extends Activity {
         btnOff = (Button) findViewById(R.id.btnOff);
         btnOn2 = (Button) findViewById(R.id.btn2On);
         btnOff2 = (Button) findViewById(R.id.btn2Off);
+        btnSend2 = (Button) findViewById(R.id.btnSend2);
+        btnSend3 = (Button) findViewById(R.id.btnSend3);
 
         mBluetoothManager =
                 (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
@@ -248,6 +252,66 @@ public class MainActivity extends Activity {
 //                            value[2] = (byte) (Integer.parseInt(editBlue.getText().toString()) & 0xFF);
 
                             Log.w(TAG,"Writing val to characteristic");
+                            writeDataToCharacteristic2(bgcList.get(j), value);
+                        }
+                    }
+
+                }
+            }
+        });
+        btnSend2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.w(TAG,"ALMOST THERE SEND 2");
+                List<BluetoothGattService> bgsList = mBluetoothGatt2.getServices();//mBluetoothGatt.getServices();
+                Log.w(TAG,"List size: "+ bgsList.size());
+                for(int i = 0; i < bgsList.size();i++)
+                {
+                    Log.w(TAG,"Service UUID: "+bgsList.get(i).getUuid().toString());
+                    List<BluetoothGattCharacteristic> bgcList = bgsList.get(i).getCharacteristics();
+
+                    for(int j = 0; j < bgcList.size();j++)
+                    {
+                        Log.w(TAG,"Characteristic UUID: "+bgcList.get(j).getUuid().toString());
+                        if(bgcList.get(j).getUuid().toString().contains("2222"))
+                        {
+                            byte[] value = new byte[3];
+                            int sendit = 2;
+                            value[0] = (byte) (sendit & 0xFF);
+//                            value[0] = (byte) (Integer.parseInt(editRed.getText().toString()) & 0xFF);
+//                            value[1] = (byte) (Integer.parseInt(editGreen.getText().toString()) & 0xFF);
+//                            value[2] = (byte) (Integer.parseInt(editBlue.getText().toString()) & 0xFF);
+
+                            Log.w(TAG,"Writing val to characteristic (2)");
+                            writeDataToCharacteristic2(bgcList.get(j), value);
+                        }
+                    }
+
+                }
+            }
+        });
+        btnSend3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.w(TAG,"ALMOST THERE SEND 3");
+                List<BluetoothGattService> bgsList = mBluetoothGatt2.getServices();//mBluetoothGatt.getServices();
+                Log.w(TAG,"List size: "+ bgsList.size());
+                for(int i = 0; i < bgsList.size();i++)
+                {
+                    Log.w(TAG,"Service UUID: "+bgsList.get(i).getUuid().toString());
+                    List<BluetoothGattCharacteristic> bgcList = bgsList.get(i).getCharacteristics();
+
+                    for(int j = 0; j < bgcList.size();j++)
+                    {
+                        Log.w(TAG,"Characteristic UUID: "+bgcList.get(j).getUuid().toString());
+                        if(bgcList.get(j).getUuid().toString().contains("2222"))
+                        {
+                            byte[] value = new byte[3];
+                            int sendit = 3;
+                            value[0] = (byte) (sendit & 0xFF);
+//                            value[0] = (byte) (Integer.parseInt(editRed.getText().toString()) & 0xFF);
+//                            value[1] = (byte) (Integer.parseInt(editGreen.getText().toString()) & 0xFF);
+//                            value[2] = (byte) (Integer.parseInt(editBlue.getText().toString()) & 0xFF);
+
+                            Log.w(TAG,"Writing val to characteristic (2)");
                             writeDataToCharacteristic2(bgcList.get(j), value);
                         }
                     }

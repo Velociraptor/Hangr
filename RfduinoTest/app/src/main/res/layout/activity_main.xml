@@ -82,4 +82,18 @@
         android:layout_below="@+id/btn2On"
         android:text="LED 2 Off" />
 
+    <Button
+        android:id="@+id/btnSend2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn2Off"
+        android:text="Send 2" />
+
+    <Button
+        android:id="@+id/btnSend3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSend2"
+        android:text="Send 3" />
+
 </RelativeLayout>
