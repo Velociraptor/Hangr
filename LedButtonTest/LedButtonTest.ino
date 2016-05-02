@@ -138,7 +138,6 @@ void RFduinoBLE_onReceive(char *data, int len)
   // if the first byte is 0x01 / on / true
   Serial.print("received data: ");
   Serial.print(data);
-  Serial.print(data[0]);
   if (data[0]==1) {
     Serial.print("Setting high");
     digitalWrite(led, HIGH);
